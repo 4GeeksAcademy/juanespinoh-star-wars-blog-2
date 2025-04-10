@@ -1,0 +1,11 @@
+.rowInfoList{
+    width: 100%;
+        background: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+    overflow-x: scroll;
+    white-space: nowrap;
+    
+    }

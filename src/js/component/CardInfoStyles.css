@@ -1,0 +1,28 @@
+.hoverStyle{
+    color:white;
+    border: 3px solid rgb(174, 174, 34);
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(174, 174, 34);
+}
+.hoverStyle:hover{
+    color:black;
+    background:rgb(174, 174, 34) ;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+    /* box-shadow: rgba(219, 233, 27, 0.966) 0px 10px 70px 12px; */
+}
+
+.favoriteStyle{
+    color:black;
+    border: 3px solid rgb(174, 174, 34);
+    background:rgb(174, 174, 34) ;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+}
+
+.favoriteStyle:hover{
+    color:white;
+    border: 3px solid rgb(174, 174, 34);
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(174, 174, 34);
+}

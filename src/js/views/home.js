@@ -1,15 +1,23 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import React,{useEffect} from "react";
 import "../../styles/home.css";
+import RowInfo from "../component/RowInfo.jsx";
+import { useGlobalContext } from "../store/appContext.js";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>
-);
+export const Home = () => {
+  const { store, actions } = useGlobalContext();
+
+
+  useEffect(()=>{
+	actions.fetchCharacters()
+  },[])
+
+  return (
+    <div
+      style={{ minHeight: "100vh" }}
+      className="container-fluid text-white bg-black d-flex justify-content-center align-items-center flex-column"
+    >
+			
+			<RowInfo list={store.chracterList} title={"Characters"} singleRoute={"character"}/>
+    </div>
+  );
+};

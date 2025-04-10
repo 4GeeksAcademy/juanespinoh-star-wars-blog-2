@@ -1,43 +1,51 @@
+
+const BASE_URL="https://www.swapi.tech/api/"
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			favorites:[],
+			chracterList:[],
+			characterInfo:{},
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			fetchCharacters:async()=>{
+				try {
+					const response=await fetch(`${BASE_URL}people/`)
+					if(!response.ok)throw new Error("Error no ok fetching  character")
+						const data =await response.json()
+					setStore({...getStore(),chracterList:data.results})
+				} catch (error) {
+					console.log(error)
+				}
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			fetchSingleCharacter:async(id)=>{
+				try {
+					const response=await fetch(`${BASE_URL}people/${id}`)
+					if(!response.ok)throw new Error("Error no ok fetching single character")
+						const data =await response.json()
+					setStore({...getStore(),characterInfo:data.result})
+				} catch (error) {
+					console.log(error)
+				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			setCharacterInfo:()=>{
+				setStore({...getStore,characterInfo:{}})
+			},
+			addToFavorites:(info)=>{
+				
+				const checkDuplicate=getStore().favorites.find((elem)=>elem.id===info.id)
+				
+				 if(checkDuplicate?.id){
+					return
+				 }
+				setStore({...getStore(),favorites:[...getStore().favorites,info]})
+			},
+			deleteToFavorites:(id)=>{
+				const newArray=getStore().favorites.filter((elem)=>elem.id!==id)
+				setStore({...getStore,favorites:newArray})
+			},
 		}
 	};
 };
