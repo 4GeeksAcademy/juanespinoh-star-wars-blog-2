@@ -9,6 +9,8 @@ export const Home = () => {
 
   useEffect(()=>{
 	actions.fetchCharacters()
+	actions.fetchPlanets()
+	actions.fetchVehicles()
   },[])
 
   return (
@@ -18,6 +20,8 @@ export const Home = () => {
     >
 			
 			<RowInfo list={store.chracterList} title={"Characters"} singleRoute={"character"}/>
+			<RowInfo list={store.planetsList} title={"Planets"} singleRoute={"planet"}/>
+			<RowInfo list={store.vehiclesList} title={"Vehicles"} singleRoute={"vehicle"}/>
     </div>
   );
 };

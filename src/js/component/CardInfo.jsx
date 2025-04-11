@@ -6,7 +6,7 @@ import {useGlobalContext} from "../store/appContext"
 
 const CardInfo=({name,id,singleRoute})=>{
     const{store,actions:{addToFavorites}}=useGlobalContext()
-    const isAddedtoFavorites=!!store.favorites.find((elem)=>elem.id===id)
+    const isAddedtoFavorites=!!store.favorites.find((elem)=>elem.id===id+name)
     const navigate=useNavigate()
     return(
 
@@ -17,7 +17,7 @@ const CardInfo=({name,id,singleRoute})=>{
     <div className="d-flex w-100 align-items-center  justify-content-between">
     <button onClick={()=>navigate(`/${singleRoute}/${id}`)} className="btn btn-primary">Learn More</button>
     <button onClick={()=>addToFavorites({
-        name,id,singleRoute
+        name,id:`${id}${name}`,singleRoute
     })}  className={`btn ${isAddedtoFavorites ? "favoriteStyle" :"hoverStyle" } `}>
     <i className="fa-solid fa-heart"></i>
     </button>

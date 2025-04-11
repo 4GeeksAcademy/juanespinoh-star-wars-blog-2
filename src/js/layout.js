@@ -7,7 +7,9 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
-import SinglePage from "./views/SinglePage.jsx";
+import SinglePagePerson from "./views/SinglePagePerson.jsx";
+import SinglePagePlanet from "./views/SinglePagePlanet.jsx";
+import SinglePageVehicle from "./views/SinglePageVehicle.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -25,8 +27,10 @@ const Layout = () => {
 					<Navbar />
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/character/:itemId" element={<SinglePage />} />
-						<Route path="/single/:theid" element={<Single />} />
+						<Route path="/character/:itemId" element={<SinglePagePerson />} />
+						<Route path="/planet/:itemId" element={<SinglePagePlanet />} />
+						<Route path="/vehicle/:itemId" element={<SinglePageVehicle />} />
+			
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					{/* <Footer /> */}
